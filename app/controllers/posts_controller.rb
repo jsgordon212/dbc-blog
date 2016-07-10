@@ -61,7 +61,7 @@ class PostsController < ApplicationController
 	private
 
   def post_params
-    params.require(:post).permit(:title, :text)
+    params.require(:post).permit(:title, :content)
   end
 
   def latest_posts

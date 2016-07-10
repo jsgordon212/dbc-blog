@@ -1,17 +1,24 @@
 <h1 id="profile-header">Welcome <%= @user.username %></h1>
 
 <% @user.posts.each do |post| %>
-  <div id="content">
-    <h2><a href="/posts/<%= post.id %>"><%= post.title %></a><span class="post-span"></span></h2>
-    <p><%= post.text %></p>
-       <% if current_user==post.user %>
-   			<nav id='post-options'>
-   				<a><%= link_to 'Edit', edit_post_path(post) %></a> |
-  				<a id='delete-post'><%= link_to 'Delete ', post,
-                 method: :delete,
-                 data: { confirm: 'Are you sure?' } %></a>
-  			</nav>
-  		<% end %>
+  <div id="posts_show_content" class="skinny_wrapper wrapper_padding">
+   <header>
+     <p class="posted_by">posted by <%= post.user.username %></p>
+     <h1><%= post.title %></h1>
+     <hr>
+    </header>
+    <div id="content">
+      <p><%= post.content %></p>
+    </div>
+    <% if current_user==post.user %>
+      <nav id='post-options'>
+        <%= link_to 'Edit', edit_post_path(post) %> |
+        <%= link_to 'Delete ', post,
+                method: :delete,
+                data: { confirm: 'Are you sure?' } %>
+      </nav>
+     <% end %>
+    </div>
   </div>
 <% end %>
 
